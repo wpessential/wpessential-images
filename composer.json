@@ -1,6 +1,6 @@
 {
     "name": "wpessential/wpessential-images",
-    "version" : "1.0.1",
+    "minimum-stability": "stable",
     "description": "WPEssential Images helping for the images registry in WordPress.",
     "type": "library",
     "license": "GPL-3.0-or-later",
