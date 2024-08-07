@@ -34,9 +34,9 @@ final class Images
 		return $this;
 	}
 
-	public function remove ( $args = [] )
+	public function remove ( $key = '' )
 	{
-		$this->remove_sizes = array_merge( $this->remove_sizes, $args );
+		$this->remove_sizes = array_push( $this->remove_sizes, $key );
 
 		return $this;
 	}
