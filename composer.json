@@ -3,7 +3,7 @@
     "version" : "1.0.0",
     "description": "WPEssential Images helping for the images registry in WordPress.",
     "type": "library",
-    "license": "GPLv3",
+    "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
             "WPEssential\\Library\\": "src/"
