@@ -1,0 +1,19 @@
+{
+    "name": "wpessential/wpessential-images",
+    "description": "WPEssential Images helping for the images registry in WordPress.",
+    "type": "library",
+    "license": "GPLv3",
+    "autoload": {
+        "psr-4": {
+            "WPEssential\\Library\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "WPEssential",
+            "email": "ceo@wpessential.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
