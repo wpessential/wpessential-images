@@ -1,30 +1,52 @@
 # WPEssential Images
-WPEssential Images helping for the images registry in WordPress.
+Help to register the images in WordPress.
 
 `composer require wpessential-images`
 
-Add the images to WordPress registry
+Add the single image to WordPress registry
 
 ```php
-use WPEssential\Library\Images;
-
 $prefix ='wpe';
-$images = Images::make( $prefix );
+$images = \WPEssential\Library\Images::make( $prefix );
 $images->add([
-	'name'  => 'featured_image_1980x9999',
 	'size'  => [ 'w' => 1980, 'h' => 9999 ],
 	'croup' => true
 ]);
 $images->init();
 ```
 
-Remove the images from WordPress registry
+Add the multiple images to WordPress registry
 
 ```php
-use WPEssential\Library\Images;
-
 $prefix ='wpe';
-$images = Images::make( $prefix );
-$images->remove('featured_image_1980x9999');
+$images = \WPEssential\Library\Images::make( $prefix );
+$images->add([
+	[
+		'size'  => [ 'w' => 1920, 'h' => 1080 ],
+		'croup' => true
+	],
+	[
+		'size'  => [ 'w' => 1980, 'h' => 9999 ],
+		'croup' => true
+	]
+]);
+$images->init();
+```
+
+Remove the single image from WordPress registry
+
+```php
+$prefix ='wpe';
+$images = \WPEssential\Library\Images::make( $prefix );
+$images->remove('1920x1080');
+$images->init();
+```
+
+Remove the multiple image from WordPress registry
+
+```php
+$prefix ='wpe';
+$images = \WPEssential\Library\Images::make( $prefix );
+$images->remove(['1920x1080']);
 $images->init();
 ```
