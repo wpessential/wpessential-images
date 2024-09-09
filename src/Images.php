@@ -9,9 +9,9 @@ if ( ! \defined( 'ABSPATH' ) )
 
 final class Images
 {
-	protected $add_sizes    = [];
-	protected $remove_sizes = [];
-	protected $prefix;
+	private $add_sizes    = [];
+	private $remove_sizes = [];
+	private $prefix;
 
 	public function __construct ( $prefix = 'wpe' )
 	{
@@ -60,7 +60,7 @@ final class Images
 		return new self( ...$args );
 	}
 
-	protected function unregister ()
+	private function unregister ()
 	{
 		$images = apply_filters( 'wpe/library/images_remove_sizes', array_merge( $this->remove_sizes, [] ) );
 		if ( ! empty( $images ) )
@@ -72,7 +72,7 @@ final class Images
 		}
 	}
 
-	protected function register ()
+	private function register ()
 	{
 		$images = array_merge( $this->add_sizes, [
 			[
