@@ -9,9 +9,9 @@ if ( ! \defined( 'ABSPATH' ) )
 
 final class Images
 {
-	private $add_sizes    = [];
-	private $remove_sizes = [];
-	private $prefix;
+	protected $add_sizes    = [];
+	protected $remove_sizes = [];
+	protected $prefix;
 
 	public function __construct ( $prefix = 'wpe' )
 	{
@@ -29,40 +29,46 @@ final class Images
 
 	public function add ( $args = [] )
 	{
-		$this->add_sizes = array_push( $this->add_sizes, $args );
+		$this->add_sizes[] = $args;
 
 		return $this;
 	}
 
 	public function adds ( $args = [] )
 	{
-		$this->add_sizes = array_merge( $this->add_sizes, $args );
+		foreach ( $args as $arg )
+		{
+			$this->add_sizes[] = $arg;
+		}
 
 		return $this;
 	}
 
 	public function remove ( $key = '' )
 	{
-		$this->remove_sizes = array_push( $this->remove_sizes, $key );
+		$this->remove_sizes[] = $key;
 
 		return $this;
 	}
 
 	public function removes ( $keyes = [] )
 	{
-		$this->remove_sizes = array_merge( $this->remove_sizes, $keyes );
+		foreach ( $keyes as $key )
+		{
+			$this->remove_sizes[] = $key;
+		}
 
 		return $this;
 	}
 
 	public static function make ( ...$args )
 	{
-		return new self( ...$args );
+		return new static( ...$args );
 	}
 
-	private function unregister ()
+	protected function unregister ()
 	{
-		$images = apply_filters( 'wpe/library/images_remove_sizes', array_merge( $this->remove_sizes, [] ) );
+		$images = apply_filters( 'wpe/library/images_remove_sizes', $this->remove_sizes );
 		if ( ! empty( $images ) )
 		{
 			foreach ( $images as $image )
@@ -72,19 +78,19 @@ final class Images
 		}
 	}
 
-	private function register ()
+	protected function register ()
 	{
-		$images = array_merge( $this->add_sizes, [
+		$this->add_sizes[] = [
 			[
 				'name'  => 'featured_image_1980x9999',
 				'size'  => [ 'w' => 1980, 'h' => 9999 ],
 				'croup' => true
 			]
-		] );
+		];
 
-		if ( ! empty( $images ) )
+		if ( ! empty( $this->add_sizes ) )
 		{
-			$images = apply_filters( 'wpe/library/images_sizes_add', $images );
+			$images = apply_filters( 'wpe/library/images_sizes_add', $this->add_sizes );
 
 			foreach ( $images as $image )
 			{

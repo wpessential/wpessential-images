@@ -1,7 +1,7 @@
 # WPEssential Images
 Help to register the images in WordPress.
 
-`composer require wpessential-images`
+`composer require wpessential/wpessential-images`
 
 Add the single image to WordPress registry
 
